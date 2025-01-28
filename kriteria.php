@@ -150,13 +150,19 @@
                                             if ($index == 0) {
                                                 // Bobot awal untuk elemen pertama sama dengan bobotnya
                                                 $bobot_awal[$index] = $dk['bobot'];
+                                                $final_bobot = round(round($bobot_awal[$index], 4) / $sigma_w, 4);
+                                                $id_kriteria = $dk['id_kriteria'];
+                                                mysqli_query($conn, "UPDATE kriteria SET bobot_normalisasi = '$final_bobot' WHERE id_kriteria = '$id_kriteria'");
                                                 ?>
-                                                <span class="formula">w_<?= $dk['kriteria_ke']; ?></span> = <?= round(round($bobot_awal[$index], 4) / $sigma_w, 4); ?><?php
+                                                <span class="formula">w_<?= $dk['kriteria_ke']; ?></span> = <?= $final_bobot; ?><?php
                                             } else {
                                                 // Bobot dihitung berdasarkan bobot sebelumnya dibagi dengan nilai bobot elemen saat ini
                                                 $bobot_awal[$index] = $bobot_awal[$index - 1] / $dk['bobot'];
+                                                $final_bobot = round(round($bobot_awal[$index], 4) / $sigma_w, 4);
+                                                $id_kriteria = $dk['id_kriteria'];
+                                                mysqli_query($conn, "UPDATE kriteria SET bobot_normalisasi = '$final_bobot' WHERE id_kriteria = '$id_kriteria'");
                                                 ?>
-                                                <span class="formula">w_<?= $dk['kriteria_ke']; ?></span> = <?= round(round($bobot_awal[$index], 4) / $sigma_w, 4); ?><?php
+                                                <span class="formula">w_<?= $dk['kriteria_ke']; ?></span> = <?= $final_bobot; ?><?php
                                             }
 
                                             if ($index < count($kriteria_array) - 1) {

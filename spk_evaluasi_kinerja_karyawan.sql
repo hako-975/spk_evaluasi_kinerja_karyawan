@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Jan 2025 pada 11.44
+-- Waktu pembuatan: 28 Jan 2025 pada 19.20
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 7.4.33
 
@@ -30,9 +30,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `hasil_fucom` (
   `id_hasil` int(11) NOT NULL,
   `id_karyawan` int(11) NOT NULL,
-  `nilai` float NOT NULL,
+  `nilai_akhir` float NOT NULL,
   `dibuat_pada` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `hasil_fucom`
+--
+
+INSERT INTO `hasil_fucom` (`id_hasil`, `id_karyawan`, `nilai_akhir`, `dibuat_pada`) VALUES
+(1, 1, 57.641, '2025-01-29 01:20:09');
 
 -- --------------------------------------------------------
 
@@ -79,11 +86,11 @@ CREATE TABLE `kriteria` (
 --
 
 INSERT INTO `kriteria` (`id_kriteria`, `kriteria_ke`, `peringkat_kepentingan`, `nama_kriteria`, `bobot`, `bobot_normalisasi`, `dibuat_pada`) VALUES
-(1, 2, 1, 'Produktivitas', 1, 0, '2025-01-28 13:47:03'),
-(2, 3, 2, 'Kerja Sama Tim', 1.5, 0, '2025-01-28 13:45:56'),
-(3, 4, 3, 'Kedisiplinan', 1.2, 0, '2025-01-28 13:45:14'),
-(4, 5, 4, 'Kreativitas', 1.3, 0, '2025-01-28 13:44:48'),
-(5, 1, 5, 'Kehadiran', 1.1, 0, '2025-01-28 13:43:19');
+(1, 2, 1, 'Produktivitas', 1, 0.3291, '2025-01-28 13:47:03'),
+(2, 3, 2, 'Kerja Sama Tim', 1.5, 0.2194, '2025-01-28 13:45:56'),
+(3, 4, 3, 'Kedisiplinan', 1.2, 0.1829, '2025-01-28 13:45:14'),
+(4, 5, 4, 'Kreativitas', 1.3, 0.1407, '2025-01-28 13:44:48'),
+(5, 1, 5, 'Kehadiran', 1.1, 0.1279, '2025-01-29 00:37:28');
 
 -- --------------------------------------------------------
 
@@ -151,7 +158,22 @@ INSERT INTO `log` (`id_log`, `isi_log`, `tgl_log`, `id_user`) VALUES
 (46, 'Kriteria Produktivitas berhasil diubah!', '2025-01-28 07:04:12', 1),
 (47, 'Hasil Evaluasi Kinerja Karyawan  gagal dihapus!', '2025-01-28 07:09:49', 1),
 (48, 'User admin berhasil login!', '2025-01-28 08:27:53', 1),
-(49, 'User admin berhasil login!', '2025-01-28 09:53:01', 1);
+(49, 'User admin berhasil login!', '2025-01-28 09:53:01', 1),
+(50, 'User admin berhasil login!', '2025-01-28 16:39:57', 1),
+(51, 'Evaluasi Kinerja Karyawan Andri Firman Saputra gagal dihitung!', '2025-01-28 17:12:48', 1),
+(52, 'SPK Evaluasi Kinerja Karyawan Andri Firman Saputra Berhasil ditambahkan!', '2025-01-28 17:16:49', 1),
+(53, 'SPK Evaluasi Kinerja Karyawan Andri Firman Saputra Berhasil ditambahkan!', '2025-01-28 17:25:01', 1),
+(54, 'Kriteria Kehadiran berhasil diubah!', '2025-01-28 17:36:49', 1),
+(55, 'Kriteria Kehadiran berhasil diubah!', '2025-01-28 17:36:58', 1),
+(56, 'Evaluasi Kinerja Karyawan Kehadiran berhasil dihapus!', '2025-01-28 17:37:07', 1),
+(57, 'Kriteria Kehadiran berhasil ditambahkan!', '2025-01-28 17:37:28', 1),
+(58, 'Hasil Evaluasi Kinerja Karyawan  gagal dihapus!', '2025-01-28 18:17:52', 1),
+(59, 'Hasil Evaluasi Kinerja Karyawan Andri Firman Saputra berhasil dihapus!', '2025-01-28 18:18:42', 1),
+(60, 'Evaluasi Kinerja Karyawan Andri Firman Saputra gagal dihitung!', '2025-01-28 18:19:09', 1),
+(61, 'Evaluasi Kinerja Karyawan Andri Firman Saputra gagal dihitung!', '2025-01-28 18:19:22', 1),
+(62, 'Evaluasi Kinerja Karyawan Andri Firman Saputra gagal dihitung!', '2025-01-28 18:19:29', 1),
+(63, 'Evaluasi Kinerja Karyawan Andri Firman Saputra gagal dihitung!', '2025-01-28 18:19:34', 1),
+(64, 'SPK Evaluasi Kinerja Karyawan Andri Firman Saputra Berhasil ditambahkan!', '2025-01-28 18:20:09', 1);
 
 -- --------------------------------------------------------
 
@@ -162,10 +184,20 @@ INSERT INTO `log` (`id_log`, `isi_log`, `tgl_log`, `id_user`) VALUES
 CREATE TABLE `penilaian` (
   `id_penilaian` int(11) NOT NULL,
   `id_kriteria` int(11) NOT NULL,
-  `nilai_awal` float NOT NULL,
-  `nilai_akhir` float DEFAULT NULL,
+  `nilai` float NOT NULL,
   `id_hasil` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `penilaian`
+--
+
+INSERT INTO `penilaian` (`id_penilaian`, `id_kriteria`, `nilai`, `id_hasil`) VALUES
+(1, 5, 80, 1),
+(2, 1, 50, 1),
+(3, 2, 54, 1),
+(4, 3, 66, 1),
+(5, 4, 50, 1);
 
 -- --------------------------------------------------------
 
@@ -243,7 +275,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `hasil_fucom`
 --
 ALTER TABLE `hasil_fucom`
-  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `karyawan`
@@ -255,19 +287,19 @@ ALTER TABLE `karyawan`
 -- AUTO_INCREMENT untuk tabel `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `log`
 --
 ALTER TABLE `log`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT untuk tabel `penilaian`
 --
 ALTER TABLE `penilaian`
-  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

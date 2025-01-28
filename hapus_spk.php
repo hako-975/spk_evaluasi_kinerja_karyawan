@@ -11,10 +11,10 @@
 	
 	$id_hasil = $_GET['id_hasil'];
 
-    $data_hasil = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM hasil_topsis INNER JOIN karyawan ON hasil_topsis.id_karyawan = karyawan.id_karyawan WHERE hasil_topsis.id_hasil = '$id_hasil'"));
+    $data_hasil = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM hasil_fucom INNER JOIN karyawan ON hasil_fucom.id_karyawan = karyawan.id_karyawan WHERE hasil_fucom.id_hasil = '$id_hasil'"));
     $nama_karyawan = $data_hasil['nama_karyawan'];
 
-	$delete_hasil = mysqli_query($conn, "DELETE FROM hasil_topsis WHERE id_hasil = '$id_hasil'");
+	$delete_hasil = mysqli_query($conn, "DELETE FROM hasil_fucom WHERE id_hasil = '$id_hasil'");
 
 	if ($delete_hasil) {
 		$delete_hasil_penilaian = mysqli_query($conn, "DELETE FROM penilaian WHERE id_hasil = '$id_hasil'");

@@ -7,7 +7,8 @@
     }
 
     $karyawan = mysqli_query($conn, "SELECT * FROM karyawan ORDER BY nama_karyawan ASC");
-    $kriteria = mysqli_query($conn, "SELECT * FROM kriteria");
+
+    $kriteria = mysqli_query($conn, "SELECT * FROM kriteria ORDER BY kriteria_ke ASC");
 
     if (isset($_GET['id_karyawan'])) {
         $id_karyawan = $_GET['id_karyawan'];
@@ -24,7 +25,7 @@
 </head> <!--end::Head--> <!--begin::Body-->
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <?php 
-        if (isset($_POST['btnSpkEvaluasiKinerjaKaryawan'])) {
+        if (isset($_POST['btnTambahSpkEvaluasiKinerjaKaryawan'])) {
             $id_karyawan = htmlspecialchars($_POST['id_karyawan']);
 
             if ($id_karyawan == '0') {
@@ -56,11 +57,11 @@
                     continue;
                 }
 
-                $kriteria_ke = $nilai_data['kriteria_ke'];
+                $id_kriteria = $nilai_data['id_kriteria'];
                 $nilai = $nilai_data['nilai'];
 
                 // Query insert
-                $query = "INSERT INTO penilaian VALUES ('', '$kriteria_ke', '$nilai', '$id_hasil')";
+                $query = "INSERT INTO penilaian VALUES ('', '$id_kriteria', '$nilai', '$id_hasil')";
 
                 if (!mysqli_query($conn, $query)) {
                     $error = true;
@@ -147,19 +148,19 @@
                                         <div class="row">
                                             <?php $i = 1; ?>
                                             <?php foreach ($kriteria as $dk): ?>
-                                                <input type="hidden" name="penilaian[<?= $dk['kriteria_ke']; ?>][kriteria_ke]" value="<?= $dk['kriteria_ke']; ?>">
+                                                <input type="hidden" name="penilaian[<?= $dk['id_kriteria']; ?>][id_kriteria]" value="<?= $dk['id_kriteria']; ?>">
                                                 <div class="mb-3 col">
-                                                    <label for="nilai_<?= $dk['kriteria_ke']; ?>" class="form-label">
-                                                        K<?= $i++; ?> - <?= htmlspecialchars($dk['nama_kriteria']); ?> (0-100)
+                                                    <label for="nilai_<?= $dk['id_kriteria']; ?>" class="form-label">
+                                                        K<?= $dk['kriteria_ke']; ?> - <?= htmlspecialchars($dk['nama_kriteria']); ?> (0-100)
                                                     </label>
-                                                    <input type="number" step="0.01" id="nilai_<?= $dk['kriteria_ke']; ?>" class="form-control" name="penilaian[<?= $dk['kriteria_ke']; ?>][nilai]" min="0" max="100" value="0" required>
+                                                    <input type="number" step="0.01" id="nilai_<?= $dk['id_kriteria']; ?>" class="form-control" name="penilaian[<?= $dk['id_kriteria']; ?>][nilai]" min="0" max="100" value="0" required>
                                                 </div>
                                             <?php endforeach; ?>
                                         </div>
                                         <hr>
                                     </div>
                                     <div class="card-footer pt-3 text-end">
-                                        <button type="submit" name="btnSpkEvaluasiKinerjaKaryawan" class="btn btn-primary">
+                                        <button type="submit" name="btnTambahSpkEvaluasiKinerjaKaryawan" class="btn btn-primary">
                                             <i class="fas fa-fw fa-save"></i> Submit
                                         </button>
                                     </div>

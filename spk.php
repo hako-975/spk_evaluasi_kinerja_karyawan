@@ -61,7 +61,7 @@
                                             <tr>
                                                 <td class="text-center align-middle"><?= $i++; ?>.</td>
                                                 <td class="align-middle text-start"><?= $dh['nama_karyawan']; ?></td>
-                                                <td class="align-middle text-start"><?= $dh['nilai']; ?></td>
+                                                <td class="align-middle text-start"><?= $dh['nilai_akhir']; ?></td>
                                                 <td class="align-middle text-start"><?= date('d-m-Y, H:i', strtotime($dh['dibuat'])); ?></td>
                                                 <td class="text-center align-middle">
                                                     <a href="hasil_spk.php?id_hasil=<?= $dh['id_hasil']; ?>" class="m-1 btn btn-primary"><i class="fas fa-fw fa-bars"></i> Detail</a>
