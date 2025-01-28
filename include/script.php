@@ -97,3 +97,17 @@
     });
 
 </script>
+
+<!-- KaTeX JS -->
+<script src="js/katex.js"></script>
+<!-- KaTeX Auto-Render JS -->
+<script>
+    $(document).ready(function() {
+        // Render LaTeX inside elements with id "formula"
+        $('.formula').each(function() {
+            var formula = $(this).html(); // Get the LaTeX string
+            // Render the LaTeX string using KaTeX
+            katex.render(formula, this);
+        });
+    });
+</script>

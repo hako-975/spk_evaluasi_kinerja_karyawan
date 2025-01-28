@@ -6,13 +6,13 @@ if (!isset($_SESSION['id_user'])) {
     exit;
 }
 
-$hasil = mysqli_query($conn, "SELECT *, hasil_topsis.dibuat_pada as dibuat FROM hasil_topsis INNER JOIN siswa ON hasil_topsis.id_siswa = siswa.id_siswa INNER JOIN ekskul ON hasil_topsis.id_ekskul = ekskul.id_ekskul ORDER BY dibuat desc");
+$hasil = mysqli_query($conn, "SELECT *, hasil_topsis.dibuat_pada as dibuat FROM hasil_topsis INNER JOIN karyawan ON hasil_topsis.id_karyawan = karyawan.id_karyawan INNER JOIN ekskul ON hasil_topsis.id_ekskul = ekskul.id_ekskul ORDER BY dibuat desc");
 
 if (isset($_GET)) {
     if (isset($_GET['dari_tanggal'])) {
         $dari_tanggal = $_GET['dari_tanggal'];
         $sampai_tanggal = $_GET['sampai_tanggal'];
-        $hasil = mysqli_query($conn, "SELECT *, hasil_topsis.dibuat_pada as dibuat FROM hasil_topsis INNER JOIN siswa ON hasil_topsis.id_siswa = siswa.id_siswa INNER JOIN ekskul ON hasil_topsis.id_ekskul = ekskul.id_ekskul WHERE hasil_topsis.dibuat_pada BETWEEN '$dari_tanggal' AND '$sampai_tanggal' ORDER BY hasil_topsis.dibuat_pada desc");
+        $hasil = mysqli_query($conn, "SELECT *, hasil_topsis.dibuat_pada as dibuat FROM hasil_topsis INNER JOIN karyawan ON hasil_topsis.id_karyawan = karyawan.id_karyawan INNER JOIN ekskul ON hasil_topsis.id_ekskul = ekskul.id_ekskul WHERE hasil_topsis.dibuat_pada BETWEEN '$dari_tanggal' AND '$sampai_tanggal' ORDER BY hasil_topsis.dibuat_pada desc");
     }
 }
 
@@ -61,7 +61,7 @@ if (isset($_GET)) {
     }
 ?>
     <div class="print-container">
-        <h2 class="text-center">Laporan Hasil SPK Ekstrakurikuler</h2>
+        <h2 class="text-center">Laporan Hasil SPK Evaluasi Kinerja Karyawan</h2>
         <?php if (isset($_GET['dari_tanggal'])) : ?>
             <p class="text-right">Dari Tanggal: <?= date('d-m-Y', strtotime($dari_tanggal)); ?> Sampai Tanggal: <?= date('d-m-Y', strtotime($sampai_tanggal)); ?></p>
         <?php endif ?>
@@ -69,8 +69,8 @@ if (isset($_GET)) {
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Nama Siswa</th>
-                    <th>Ekstrakurikuler</th>
+                    <th>Nama Karyawan</th>
+                    <th>Evaluasi Kinerja Karyawan</th>
                     <th>Preferensi Tertinggi</th>
                     <th>Dibuat Pada</th>
                 </tr>
@@ -80,7 +80,7 @@ if (isset($_GET)) {
                 <?php foreach ($hasil as $dh): ?>
                     <tr>
                         <td class="text-center align-middle"><?= $i++; ?>.</td>
-                        <td class="align-middle text-start"><?= $dh['nama_siswa']; ?></td>
+                        <td class="align-middle text-start"><?= $dh['nama_karyawan']; ?></td>
                         <td class="align-middle text-start"><?= $dh['nama_ekskul']; ?></td>
                         <td class="align-middle text-start"><?= $dh['preferensi_tertinggi']; ?></td>
                         <td class="align-middle text-start"><?= date('d-m-Y, H:i \W\I\B', strtotime($dh['dibuat'])); ?></td>

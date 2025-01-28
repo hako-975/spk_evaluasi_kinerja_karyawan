@@ -5,7 +5,7 @@
 	$host = 'localhost';
 	$user = 'root';
 	$pass = '';
-	$database = 'spk_ekskul_fadilah';
+	$database = 'spk_evaluasi_kinerja_karyawan';
 
 	$conn = mysqli_connect($host, $user, $pass, $database);
 

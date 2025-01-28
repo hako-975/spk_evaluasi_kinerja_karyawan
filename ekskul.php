@@ -13,7 +13,7 @@
 <html lang="en"> <!--begin::Head-->
 
 <head>
-    <title>Ekstrakurikuler</title>
+    <title>Evaluasi Kinerja Karyawan</title>
     <?php include_once 'include/head.php'; ?>
 </head> <!--end::Head--> <!--begin::Body-->
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary"> <!--begin::App Wrapper-->
@@ -26,13 +26,13 @@
                 <div class="container-fluid"> <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="mb-0"><i class="nav-icon fas fa-fw fa-basketball-ball"></i> Ekstrakurikuler</h3>
+                            <h3 class="mb-0"><i class="nav-icon fas fa-fw fa-basketball-ball"></i> Evaluasi Kinerja Karyawan</h3>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-end">
                                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Ekstrakurikuler
+                                    Evaluasi Kinerja Karyawan
                                 </li>
                             </ol>
                         </div>
@@ -44,12 +44,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive p-2">
-                                <a href="tambah_ekskul.php" class="mb-3 btn btn-primary"><i class="fas fa-fw fa-plus"></i> Tambah Ekstrakurikuler</a>
+                                <a href="tambah_ekskul.php" class="mb-3 btn btn-danger"><i class="fas fa-fw fa-plus"></i> Tambah Evaluasi Kinerja Karyawan</a>
                                 <table class="table table-bordered" id="table_id">
                                     <thead class="table-dark">
                                         <tr>
                                             <th class="text-center align-middle">No.</th>
-                                            <th class="text-center align-middle">Nama Ekstrakurikuler</th>
+                                            <th class="text-center align-middle">Nama Evaluasi Kinerja Karyawan</th>
                                             <th class="text-center align-middle">Dibuat Pada</th>
                                             <th class="text-center align-middle">Aksi</th>
                                         </tr>

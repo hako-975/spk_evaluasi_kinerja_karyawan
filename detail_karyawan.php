@@ -6,16 +6,16 @@
         exit;
     }
 
-    $id_siswa = $_GET['id_siswa'];
+    $id_karyawan = $_GET['id_karyawan'];
 
-    $data_siswa = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM siswa WHERE id_siswa = '$id_siswa'"));
+    $data_karyawan = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM karyawan WHERE id_karyawan = '$id_karyawan'"));
 ?>
 
 <!DOCTYPE html>
 <html lang="en"> <!--begin::Head-->
 
 <head>
-    <title>Detail Siswa - <?= $data_siswa['nama_siswa']; ?></title>
+    <title>Detail Karyawan - <?= $data_karyawan['nama_karyawan']; ?></title>
     <?php include_once 'include/head.php'; ?>
     <style>
         .profile-card {
@@ -58,13 +58,13 @@
                 <div class="container-fluid"> <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-8">
-                            <h3 class="mb-0"><i class="nav-icon fas fa-fw fa-user"></i> Detail Siswa - <?= $data_siswa['nama_siswa']; ?></h3>
+                            <h3 class="mb-0"><i class="nav-icon fas fa-fw fa-users"></i> Detail Karyawan - <?= $data_karyawan['nama_karyawan']; ?></h3>
                         </div>
                         <div class="col-sm-4">
                             <ol class="breadcrumb float-sm-end">
-                                <li class="breadcrumb-item"><a href="siswa.php">Siswa</a></li>
+                                <li class="breadcrumb-item"><a href="karyawan.php">Karyawan</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Detail Siswa
+                                    Detail Karyawan
                                 </li>
                             </ol>
                         </div>
@@ -77,18 +77,17 @@
                         <div class="col-5">
                             <div class="profile-card mb-3">
                                 <div class="text-center">
-                                    <img src="assets/img/profiles/<?= $data_siswa['foto']; ?>" alt="<?= $data_siswa['foto']; ?>">
+                                    <img src="assets/img/profiles/<?= $data_karyawan['foto']; ?>" alt="<?= $data_karyawan['foto']; ?>">
                                 </div>
-                                <h3 class="text-center"><?= $data_siswa['nama_siswa']; ?></h3>
-                                <p><strong>Tanggal Lahir: </strong><?= date('d-m-Y', strtotime($data_siswa['tanggal_lahir']));; ?></p>
-                                <p><strong>Jenis Kelamin: </strong><?= ucwords($data_siswa['jenis_kelamin']); ?></p>
-                                <p><strong>No. Telepon: </strong><?= $data_siswa['no_hp']; ?></p>
-                                <p><strong>Alamat: </strong><?= $data_siswa['alamat']; ?></p>
-                                <p><strong>Kelas Siswa: </strong><?= $data_siswa['kelas_siswa']; ?></p>
-                                <p><strong>Dibuat Pada: </strong><?= date('d-m-Y, H:i:s', strtotime($data_siswa['dibuat_pada']));; ?></p>
+                                <h3 class="text-center"><?= $data_karyawan['nama_karyawan']; ?></h3>
+                                <p><strong>Tanggal Lahir: </strong><?= date('d-m-Y', strtotime($data_karyawan['tanggal_lahir']));; ?></p>
+                                <p><strong>Jenis Kelamin: </strong><?= ucwords($data_karyawan['jenis_kelamin']); ?></p>
+                                <p><strong>No. Telepon: </strong><?= $data_karyawan['no_hp']; ?></p>
+                                <p><strong>Alamat: </strong><?= $data_karyawan['alamat']; ?></p>
+                                <p><strong>Dibuat Pada: </strong><?= date('d-m-Y, H:i:s', strtotime($data_karyawan['dibuat_pada']));; ?></p>
                                 <div class="btn-group" role="group">
-                                    <a href="ubah_siswa.php?id_siswa=<?= $data_siswa['id_siswa']; ?>" class="btn btn-success"><i class="fas fa-fw fa-edit"></i> Ubah</a>
-                                    <a href="hapus_siswa.php?id_siswa=<?= $data_siswa['id_siswa']; ?>" data-nama="<?= $data_siswa['nama_siswa']; ?>" class="btn btn-danger btn-delete"><i class="fas fa-fw fa-trash"></i> Hapus</a>
+                                    <a href="ubah_karyawan.php?id_karyawan=<?= $data_karyawan['id_karyawan']; ?>" class="btn btn-success"><i class="fas fa-fw fa-edit"></i> Ubah</a>
+                                    <a href="hapus_karyawan.php?id_karyawan=<?= $data_karyawan['id_karyawan']; ?>" data-nama="<?= $data_karyawan['nama_karyawan']; ?>" class="btn btn-danger btn-delete"><i class="fas fa-fw fa-trash"></i> Hapus</a>
                                 </div>
                             </div>
                         </div>

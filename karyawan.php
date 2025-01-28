@@ -6,14 +6,14 @@
         exit;
     }
 
-    $siswa = mysqli_query($conn, "SELECT * FROM siswa ORDER BY nama_siswa ASC");
+    $karyawan = mysqli_query($conn, "SELECT * FROM karyawan ORDER BY nama_karyawan ASC");
 ?>
 
 <!DOCTYPE html>
 <html lang="en"> <!--begin::Head-->
 
 <head>
-    <title>Siswa</title>
+    <title>Karyawan</title>
     <?php include_once 'include/head.php'; ?>
 </head> <!--end::Head--> <!--begin::Body-->
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary"> <!--begin::App Wrapper-->
@@ -26,13 +26,13 @@
                 <div class="container-fluid"> <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="mb-0"><i class="nav-icon fas fa-fw fa-users"></i> Siswa</h3>
+                            <h3 class="mb-0"><i class="nav-icon fas fa-fw fa-users"></i> Karyawan</h3>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-end">
                                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Siswa
+                                    Karyawan
                                 </li>
                             </ol>
                         </div>
@@ -44,27 +44,29 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive p-2">
-                                <a href="tambah_siswa.php" class="mb-3 btn btn-primary"><i class="fas fa-fw fa-plus"></i> Tambah Siswa</a>
+                                <a href="tambah_karyawan.php" class="mb-3 btn btn-primary"><i class="fas fa-fw fa-plus"></i> Tambah Karyawan</a>
                                 <table class="table table-bordered" id="table_id">
                                     <thead class="table-dark">
                                         <tr>
                                             <th class="text-center align-middle">No.</th>
-                                            <th class="text-center align-middle">Nama Siswa</th>
-                                            <th class="text-center align-middle">Kelas Siswa</th>
+                                            <th class="text-center align-middle">Nama Karyawan</th>
+                                            <th class="text-center align-middle">Jenis Kelamin</th>
+                                            <th class="text-center align-middle">No. Telepon</th>
                                             <th class="text-center align-middle">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $i = 1; ?>
-                                        <?php foreach ($siswa as $ds): ?>
+                                        <?php foreach ($karyawan as $dk): ?>
                                             <tr>
                                                 <td class="text-center align-middle"><?= $i++; ?>.</td>
-                                                <td class="align-middle text-start"><?= $ds['nama_siswa']; ?></td>
-                                                <td class="align-middle text-start"><?= $ds['kelas_siswa']; ?></td>
+                                                <td class="align-middle text-start"><?= $dk['nama_karyawan']; ?></td>
+                                                <td class="align-middle text-start"><?= $dk['jenis_kelamin']; ?></td>
+                                                <td class="align-middle text-start"><?= $dk['no_hp']; ?></td>
                                                 <td class="text-center align-middle">
-                                                    <a href="detail_siswa.php?id_siswa=<?= $ds['id_siswa']; ?>" class="m-1 btn btn-primary"><i class="fas fa-fw fa-bars"></i> Detail</a>
-                                                    <a href="ubah_siswa.php?id_siswa=<?= $ds['id_siswa']; ?>" class="m-1 btn btn-success"><i class="fas fa-fw fa-edit"></i> Ubah</a>
-                                                    <a href="hapus_siswa.php?id_siswa=<?= $ds['id_siswa']; ?>" data-nama="<?= $ds['nama_siswa']; ?>" class="m-1 btn btn-danger btn-delete"><i class="fas fa-fw fa-trash"></i> Hapus</a>
+                                                    <a href="detail_karyawan.php?id_karyawan=<?= $dk['id_karyawan']; ?>" class="m-1 btn btn-primary"><i class="fas fa-fw fa-bars"></i> Detail</a>
+                                                    <a href="ubah_karyawan.php?id_karyawan=<?= $dk['id_karyawan']; ?>" class="m-1 btn btn-success"><i class="fas fa-fw fa-edit"></i> Ubah</a>
+                                                    <a href="hapus_karyawan.php?id_karyawan=<?= $dk['id_karyawan']; ?>" data-nama="<?= $dk['nama_karyawan']; ?>" class="m-1 btn btn-danger btn-delete"><i class="fas fa-fw fa-trash"></i> Hapus</a>
                                                 </td>
                                             </tr>
                                         <?php endforeach ?>

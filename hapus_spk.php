@@ -11,21 +11,21 @@
 	
 	$id_hasil = $_GET['id_hasil'];
 
-    $data_hasil = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM hasil_topsis INNER JOIN siswa ON hasil_topsis.id_siswa = siswa.id_siswa WHERE hasil_topsis.id_hasil = '$id_hasil'"));
-    $nama_siswa = $data_hasil['nama_siswa'];
+    $data_hasil = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM hasil_topsis INNER JOIN karyawan ON hasil_topsis.id_karyawan = karyawan.id_karyawan WHERE hasil_topsis.id_hasil = '$id_hasil'"));
+    $nama_karyawan = $data_hasil['nama_karyawan'];
 
 	$delete_hasil = mysqli_query($conn, "DELETE FROM hasil_topsis WHERE id_hasil = '$id_hasil'");
 
 	if ($delete_hasil) {
 		$delete_hasil_penilaian = mysqli_query($conn, "DELETE FROM penilaian WHERE id_hasil = '$id_hasil'");
-        $log_berhasil = mysqli_query($conn, "INSERT INTO log VALUES ('', 'Hasil Ekstrakurikuler $nama_siswa berhasil dihapus!', CURRENT_TIMESTAMP(), " . $dataUser['id_user'] . ")");
+        $log_berhasil = mysqli_query($conn, "INSERT INTO log VALUES ('', 'Hasil Evaluasi Kinerja Karyawan $nama_karyawan berhasil dihapus!', CURRENT_TIMESTAMP(), " . $dataUser['id_user'] . ")");
 
 		echo "
 	        <script>
 	            Swal.fire({
 	                icon: 'success',
 	                title: 'Berhasil!',
-	                text: 'Hasil Ekstrakurikuler " . $nama_siswa . " berhasil dihapus!'
+	                text: 'Hasil Evaluasi Kinerja Karyawan " . $nama_karyawan . " berhasil dihapus!'
 	            }).then((result) => {
 	                if (result.isConfirmed) {
 	                    window.location.href = 'spk.php';
@@ -35,14 +35,14 @@
 	    ";
 	    exit;
 	} else {
-        $log_gagal = mysqli_query($conn, "INSERT INTO log VALUES ('', 'Hasil Ekstrakurikuler $nama_siswa gagal dihapus!', CURRENT_TIMESTAMP(), " . $dataUser['id_user'] . ")");
+        $log_gagal = mysqli_query($conn, "INSERT INTO log VALUES ('', 'Hasil Evaluasi Kinerja Karyawan $nama_karyawan gagal dihapus!', CURRENT_TIMESTAMP(), " . $dataUser['id_user'] . ")");
 
 	    echo "
 	        <script>
 	            Swal.fire({
 	                icon: 'error',
 	                title: 'Gagal!',
-	                text: 'Hasil Ekstrakurikuler " . $nama_siswa . " gagal dihapus!'
+	                text: 'Hasil Evaluasi Kinerja Karyawan " . $nama_karyawan . " gagal dihapus!'
 	            }).then((result) => {
 	                if (result.isConfirmed) {
 	                    window.location.href = 'spk.php';

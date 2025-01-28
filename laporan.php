@@ -6,12 +6,12 @@
         exit;
     }
 
-    $hasil = mysqli_query($conn, "SELECT *, hasil_topsis.dibuat_pada as dibuat FROM hasil_topsis INNER JOIN siswa ON hasil_topsis.id_siswa = siswa.id_siswa INNER JOIN ekskul ON hasil_topsis.id_ekskul = ekskul.id_ekskul ORDER BY dibuat desc");
+    $hasil = mysqli_query($conn, "SELECT *, hasil_topsis.dibuat_pada as dibuat FROM hasil_topsis INNER JOIN karyawan ON hasil_topsis.id_karyawan = karyawan.id_karyawan INNER JOIN ekskul ON hasil_topsis.id_ekskul = ekskul.id_ekskul ORDER BY dibuat desc");
     
     if (isset($_GET['btnPrint'])) {
         $dari_tanggal = $_GET['dari_tanggal'] . ' 00:00:00';
         $sampai_tanggal = $_GET['sampai_tanggal'] . ' 23:59:59';
-        $hasil = mysqli_query($conn, "SELECT *, hasil_topsis.dibuat_pada as dibuat FROM hasil_topsis INNER JOIN siswa ON hasil_topsis.id_siswa = siswa.id_siswa INNER JOIN ekskul ON hasil_topsis.id_ekskul = ekskul.id_ekskul WHERE hasil_topsis.dibuat_pada BETWEEN '$dari_tanggal' AND '$sampai_tanggal' ORDER BY hasil_topsis.dibuat_pada desc");
+        $hasil = mysqli_query($conn, "SELECT *, hasil_topsis.dibuat_pada as dibuat FROM hasil_topsis INNER JOIN karyawan ON hasil_topsis.id_karyawan = karyawan.id_karyawan INNER JOIN ekskul ON hasil_topsis.id_ekskul = ekskul.id_ekskul WHERE hasil_topsis.dibuat_pada BETWEEN '$dari_tanggal' AND '$sampai_tanggal' ORDER BY hasil_topsis.dibuat_pada desc");
     }
 ?>
 
@@ -19,7 +19,7 @@
 <html lang="en"> <!--begin::Head-->
 
 <head>
-    <title>Laporan Hasil SPK Ekstrakurikuler</title>
+    <title>Laporan Hasil SPK Evaluasi Kinerja Karyawan</title>
     <?php include_once 'include/head.php'; ?>
 </head> <!--end::Head--> <!--begin::Body-->
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary"> <!--begin::App Wrapper-->
@@ -32,13 +32,13 @@
                 <div class="container-fluid"> <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="mb-0"><i class="nav-icon fas fa-fw fa-file-alt"></i> Laporan Hasil SPK Ekstrakurikuler</h3>
+                            <h3 class="mb-0"><i class="nav-icon fas fa-fw fa-file-alt"></i> Laporan Hasil SPK Evaluasi Kinerja Karyawan</h3>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-end">
                                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Laporan Hasil SPK Ekstrakurikuler
+                                    Laporan Hasil SPK Evaluasi Kinerja Karyawan
                                 </li>
                             </ol>
                         </div>
@@ -78,8 +78,8 @@
                                     <thead class="table-dark">
                                         <tr>
                                             <th class="text-center align-middle">No.</th>
-                                            <th class="text-center align-middle">Nama Siswa</th>
-                                            <th class="text-center align-middle">Ekstrakurikuler</th>
+                                            <th class="text-center align-middle">Nama Karyawan</th>
+                                            <th class="text-center align-middle">Evaluasi Kinerja Karyawan</th>
                                             <th class="text-center align-middle">Preferensi Tertinggi</th>
                                             <th class="text-center align-middle">Dibuat Pada</th>
                                         </tr>
@@ -89,7 +89,7 @@
                                         <?php foreach ($hasil as $dh): ?>
                                             <tr>
                                                 <td class="text-center align-middle"><?= $i++; ?>.</td>
-                                                <td class="align-middle text-start"><?= $dh['nama_siswa']; ?></td>
+                                                <td class="align-middle text-start"><?= $dh['nama_karyawan']; ?></td>
                                                 <td class="align-middle text-start"><?= $dh['nama_ekskul']; ?></td>
                                                 <td class="align-middle text-start"><?= $dh['preferensi_tertinggi']; ?></td>
                                                 <td class="align-middle text-start"><?= date('d-m-Y, H:i \W\I\B', strtotime($dh['dibuat'])); ?></td>

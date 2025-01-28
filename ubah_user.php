@@ -177,7 +177,7 @@
                 <div class="container-fluid"> <!-- Info boxes -->
                     <div class="row">
                         <div class="col-6">
-                            <div class="card card-primary card-outline mb-4">
+                            <div class="card card-danger card-outline mb-4">
                                 <form method="post" enctype="multipart/form-data"> 
                                     <div class="card-body">
                                         <div class="mb-3"> 
@@ -209,13 +209,13 @@
                                         </div>
                                     </div> 
                                     <div class="card-footer pt-3">
-                                        <button type="submit" name="btnUbahUser" class="btn btn-primary">Submit</button>
+                                        <button type="submit" name="btnUbahUser" class="btn btn-danger">Submit</button>
                                     </div> 
                                 </form> <!--end::Form-->
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="card card-primary card-outline mb-4">
+                            <div class="card card-danger card-outline mb-4">
                                 <div class="card-body text-center">
                                     <h5 class="form-label">Preview Foto</h5>
                                     <div class="row justify-content-between">

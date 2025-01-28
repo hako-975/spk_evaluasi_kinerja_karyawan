@@ -6,10 +6,10 @@
 </style>
 
 <aside class="app-sidebar bg-white shadow" data-bs-theme="dark">
-    <div class="sidebar-brand border-primary border-bottom"> 
+    <div class="sidebar-brand border-danger border-bottom"> 
         <a href="index.php" class="brand-link"> 
-            <img src="assets/img/properties/logo.png" alt="Logo" class="brand-image-xl">
-            <span class="brand-text fw-light text-dark small text-wrap">Sistem Pendukung Keputusan Ekstrakurikuler</span>
+            <img src="assets/img/properties/favicon.png" alt="Logo" class="brand-image-xl">
+            <span class="brand-text fw-light text-dark small text-wrap">Sistem Pendukung Keputusan Evaluasi Kinerja Karyawan</span>
         </a> 
     </div>
     <div class="sidebar-wrapper">
@@ -22,7 +22,7 @@
                 </li>
                 <li class="nav-item"> 
                     <a href="spk.php" class="nav-link text-dark <?= ($_SERVER['REQUEST_URI'] == '/spk_ekskul_fadilah/spk.php') ? 'active' : ''; ?>"> <i class="nav-icon fas fa-fw fa-calculator"></i>
-                        <p>SPK Ekstrakurikuler</p>
+                        <p>SPK</p>
                     </a> 
                 </li>
                 <li class="nav-item"> 
@@ -31,13 +31,8 @@
                     </a> 
                 </li>
                 <li class="nav-item"> 
-                    <a href="ekskul.php" class="nav-link text-dark <?= ($_SERVER['REQUEST_URI'] == '/spk_ekskul_fadilah/ekskul.php') ? 'active' : ''; ?>"> <i class="nav-icon fas fa-fw fa-basketball-ball"></i>
-                        <p>Ekstrakurikuler</p>
-                    </a> 
-                </li>
-                <li class="nav-item"> 
-                    <a href="siswa.php" class="nav-link text-dark <?= ($_SERVER['REQUEST_URI'] == '/spk_ekskul_fadilah/siswa.php') ? 'active' : ''; ?>"> <i class="nav-icon fas fa-fw fa-users"></i>
-                        <p>Siswa</p>
+                    <a href="karyawan.php" class="nav-link text-dark <?= ($_SERVER['REQUEST_URI'] == '/spk_ekskul_fadilah/karyawan.php') ? 'active' : ''; ?>"> <i class="nav-icon fas fa-fw fa-users"></i>
+                        <p>Karyawan</p>
                     </a> 
                 </li>
                 <li class="nav-item"> 

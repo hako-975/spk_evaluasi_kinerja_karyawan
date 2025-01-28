@@ -6,18 +6,17 @@
         exit;
     }
 
-    $jml_ekskul = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM ekskul"));
     $jml_kriteria = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM kriteria"));
-    $jml_siswa = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM siswa"));
+    $jml_karyawan = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM karyawan"));
     $jml_user = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM user"));
-    $jml_spk = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hasil_topsis"));
+    $jml_spk = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM hasil_fucom"));
 ?>
 
 <!DOCTYPE html>
 <html lang="en"> <!--begin::Head-->
 
 <head>
-    <title>Dashboard - Sistem Pendukung Keputusan Ekstrakurikuler Fuzzy Tsukamoto</title>
+    <title>Dashboard - Sistem Pendukung Keputusan Evaluasi Kinerja Karyawan Fuzzy Tsukamoto</title>
     <?php include_once 'include/head.php'; ?>
 </head> <!--end::Head--> <!--begin::Body-->
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary"> <!--begin::App Wrapper-->
@@ -47,6 +46,11 @@
                 <div class="container-fluid"> <!-- Info boxes -->
                     <div class="row">
                         <div class="col-12 col-sm-6 col-md-3">
+                            <div class="info-box"> <span class="info-box-icon text-bg-primary shadow-sm"> <i class="fas fa-fw fa-calculator text-white"></i> </span>
+                                <div class="info-box-content"> <span class="info-box-text">Jumlah SPK</span> <span class="info-box-number"><?= $jml_spk; ?></span> </div> <!-- /.info-box-content -->
+                            </div> <!-- /.info-box -->
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box"> <span class="info-box-icon text-bg-success shadow-sm"> <i class="fas fa-fw fa-clipboard-list"></i> </span>
                                 <div class="info-box-content"> <span class="info-box-text">Jumlah Kriteria</span> 
                                     <span class="info-box-number">
@@ -56,28 +60,15 @@
                             </div>
                         </div> 
                         <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box"> <span class="info-box-icon text-bg-danger shadow-sm"> <i class="fas fa-fw fa-basketball-ball"></i> </span>
-                                <div class="info-box-content"> <span class="info-box-text">Jumlah Ekstrakurikuler</span> 
-                                    <span class="info-box-number">
-                                        <?= $jml_ekskul; ?>
-                                    </span> </div>
-                            </div> <!-- /.info-box -->
-                        </div> <!-- /.col -->
-                        <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box"> <span class="info-box-icon text-bg-primary shadow-sm"> <i class="fas fa-fw fa-users text-white"></i> </span>
-                                <div class="info-box-content"> <span class="info-box-text">Jumlah Siswa</span>
-                                    <span class="info-box-number"><?= $jml_siswa; ?></span>
+                            <div class="info-box"> <span class="info-box-icon text-bg-danger shadow-sm"> <i class="fas fa-fw fa-users text-white"></i> </span>
+                                <div class="info-box-content"> <span class="info-box-text">Jumlah Karyawan</span>
+                                    <span class="info-box-number"><?= $jml_karyawan; ?></span>
                                 </div> <!-- /.info-box-content -->
                             </div> <!-- /.info-box -->
                         </div> <!-- /.col -->
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box"> <span class="info-box-icon text-bg-warning shadow-sm"> <i class="fas fa-fw fa-user text-white"></i> </span>
                                 <div class="info-box-content"> <span class="info-box-text">Jumlah User</span> <span class="info-box-number"><?= $jml_user; ?></span> </div> <!-- /.info-box-content -->
-                            </div> <!-- /.info-box -->
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box"> <span class="info-box-icon text-bg-info shadow-sm"> <i class="fas fa-fw fa-calculator text-white"></i> </span>
-                                <div class="info-box-content"> <span class="info-box-text">Jumlah SPK</span> <span class="info-box-number"><?= $jml_spk; ?></span> </div> <!-- /.info-box-content -->
                             </div> <!-- /.info-box -->
                         </div>
                     </div>

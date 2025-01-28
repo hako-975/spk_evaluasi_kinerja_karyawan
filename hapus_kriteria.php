@@ -17,14 +17,14 @@
 	$delete_kriteria = mysqli_query($conn, "DELETE FROM kriteria WHERE id_kriteria = '$id_kriteria'");
 
 	if ($delete_kriteria) {
-        $log_berhasil = mysqli_query($conn, "INSERT INTO log VALUES ('', 'Ekstrakurikuler $nama_kriteria berhasil dihapus!', CURRENT_TIMESTAMP(), " . $dataUser['id_user'] . ")");
+        $log_berhasil = mysqli_query($conn, "INSERT INTO log VALUES ('', 'Evaluasi Kinerja Karyawan $nama_kriteria berhasil dihapus!', CURRENT_TIMESTAMP(), " . $dataUser['id_user'] . ")");
 
 		echo "
 	        <script>
 	            Swal.fire({
 	                icon: 'success',
 	                title: 'Berhasil!',
-	                text: 'Ekstrakurikuler " . $nama_kriteria . " berhasil dihapus!'
+	                text: 'Evaluasi Kinerja Karyawan " . $nama_kriteria . " berhasil dihapus!'
 	            }).then((result) => {
 	                if (result.isConfirmed) {
 	                    window.location.href = 'kriteria.php';
@@ -34,14 +34,14 @@
 	    ";
 	    exit;
 	} else {
-        $log_gagal = mysqli_query($conn, "INSERT INTO log VALUES ('', 'Ekstrakurikuler $nama_kriteria gagal dihapus!', CURRENT_TIMESTAMP(), " . $dataUser['id_user'] . ")");
+        $log_gagal = mysqli_query($conn, "INSERT INTO log VALUES ('', 'Evaluasi Kinerja Karyawan $nama_kriteria gagal dihapus!', CURRENT_TIMESTAMP(), " . $dataUser['id_user'] . ")");
 
 	    echo "
 	        <script>
 	            Swal.fire({
 	                icon: 'error',
 	                title: 'Gagal!',
-	                text: 'Ekstrakurikuler " . $nama_kriteria . " gagal dihapus!'
+	                text: 'Evaluasi Kinerja Karyawan " . $nama_kriteria . " gagal dihapus!'
 	            }).then((result) => {
 	                if (result.isConfirmed) {
 	                    window.location.href = 'kriteria.php';

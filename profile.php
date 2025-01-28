@@ -11,7 +11,7 @@
 <html lang="en"> <!--begin::Head-->
 
 <head>
-    <title>Profile - Sistem Pendukung Keputusan Ekstrakurikuler Fuzzy Tsukamoto</title>
+    <title>Profile - Sistem Pendukung Keputusan Evaluasi Kinerja Karyawan Fuzzy Tsukamoto</title>
     <?php include_once 'include/head.php'; ?>
     <style>
         .profile-card {
@@ -69,7 +69,7 @@
             </div>
             <div class="app-content"> <!--begin::Container-->
                 <div class="container-fluid">
-                    <div class="profile-card mb-3 card card-outline card-primary">
+                    <div class="profile-card mb-3 card card-outline card-danger">
                         <div class="text-center">
                             <img src="assets/img/profiles/<?= $dataUser['foto']; ?>" alt="Profile Picture">
                         </div>

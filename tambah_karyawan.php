@@ -12,18 +12,17 @@
 <html lang="en"> <!--begin::Head-->
 
 <head>
-    <title>Tambah Siswa</title>
+    <title>Tambah Karyawan</title>
     <?php include_once 'include/head.php'; ?>
 </head> <!--end::Head--> <!--begin::Body-->
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <?php 
-        if (isset($_POST['btnTambahSiswa'])) {
-            $nama_siswa = htmlspecialchars($_POST['nama_siswa']);
+        if (isset($_POST['btnTambahKaryawan'])) {
+            $nama_karyawan = htmlspecialchars($_POST['nama_karyawan']);
             $tanggal_lahir = htmlspecialchars($_POST['tanggal_lahir']);
             $jenis_kelamin = htmlspecialchars($_POST['jenis_kelamin']);
             $no_hp = htmlspecialchars($_POST['no_hp']);
             $alamat = htmlspecialchars($_POST['alamat']);
-            $kelas_siswa = htmlspecialchars($_POST['kelas_siswa']);
 
             if ($jenis_kelamin == '0') {
                 echo "
@@ -31,7 +30,7 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'Gagal!',
-                            text: 'Pilih jenis kelamin siswa!',
+                            text: 'Pilih jenis kelamin karyawan!',
                             confirmButtonText: 'Kembali'
                         }).then((result) => {
                             if (result.isConfirmed) {
@@ -93,10 +92,10 @@
                 $foto = 'default.jpg';
             }
 
-            $insert_siswa = mysqli_query($conn, "INSERT INTO siswa VALUES ('', '$nama_siswa', '$tanggal_lahir', '$jenis_kelamin', '$no_hp', '$alamat', '$kelas_siswa', '$foto', CURRENT_TIMESTAMP())");
+            $insert_karyawan = mysqli_query($conn, "INSERT INTO karyawan VALUES ('', '$nama_karyawan', '$tanggal_lahir', '$jenis_kelamin', '$no_hp', '$alamat', '$foto', CURRENT_TIMESTAMP())");
 
-            if ($insert_siswa) {
-                $log_berhasil = mysqli_query($conn, "INSERT INTO log VALUES ('', 'Siswa $nama_siswa berhasil ditambahkan!', CURRENT_TIMESTAMP(), " . $dataUser['id_user'] . ")");
+            if ($insert_karyawan) {
+                $log_berhasil = mysqli_query($conn, "INSERT INTO log VALUES ('', 'Karyawan $nama_karyawan berhasil ditambahkan!', CURRENT_TIMESTAMP(), " . $dataUser['id_user'] . ")");
 
                 if ($foto != '') {
                     $file_tmp = $_FILES['foto']['tmp_name'];     
@@ -108,23 +107,23 @@
                         Swal.fire({
                             icon: 'success',
                             title: 'Berhasil!',
-                            text: 'Siswa " . $nama_siswa . " berhasil ditambahkan!'
+                            text: 'Karyawan " . $nama_karyawan . " berhasil ditambahkan!'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = 'siswa.php';
+                                window.location.href = 'karyawan.php';
                             }
                         });
                     </script>
                 ";
                 exit;
             } else {
-                $log_gagal = mysqli_query($conn, "INSERT INTO log VALUES ('', 'Siswa $nama_siswa gagal ditambahkan!', CURRENT_TIMESTAMP(), " . $dataUser['id_user'] . ")");
+                $log_gagal = mysqli_query($conn, "INSERT INTO log VALUES ('', 'Karyawan $nama_karyawan gagal ditambahkan!', CURRENT_TIMESTAMP(), " . $dataUser['id_user'] . ")");
                 echo "
                     <script>
                         Swal.fire({
                             icon: 'error',
                             title: 'Gagal!',
-                            text: 'Siswa " . $nama_siswa . " gagal ditambahkan!'
+                            text: 'Karyawan " . $nama_karyawan . " gagal ditambahkan!'
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 window.history.back();
@@ -145,13 +144,13 @@
                 <div class="container-fluid"> <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="mb-0">Tambah Siswa</h3>
+                            <h3 class="mb-0">Tambah Karyawan</h3>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-end">
-                                <li class="breadcrumb-item"><a href="siswa.php">Siswa</a></li>
+                                <li class="breadcrumb-item"><a href="karyawan.php">Karyawan</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Tambah Siswa
+                                    Tambah Karyawan
                                 </li>
                             </ol>
                         </div>
@@ -162,19 +161,19 @@
                 <div class="container-fluid"> <!-- Info boxes -->
                     <div class="row">
                         <div class="col-6">
-                            <div class="card card-primary card-outline mb-4">
+                            <div class="card card-danger card-outline mb-4">
                                 <form method="post" enctype="multipart/form-data"> 
                                     <div class="card-body">
                                         <div class="mb-3"> 
-                                            <label for="nama_siswa" class="form-label">Nama Siswa</label>
-                                            <input type="text" class="form-control" id="nama_siswa" name="nama_siswa" required>
+                                            <label for="nama_karyawan" class="form-label">Nama Karyawan</label>
+                                            <input type="text" class="form-control" id="nama_karyawan" name="nama_karyawan" required>
                                         </div>
                                         <div class="mb-3"> 
-                                            <label for="tanggal_lahir" class="form-label">Tanggal Lahir Siswa</label>
+                                            <label for="tanggal_lahir" class="form-label">Tanggal Lahir Karyawan</label>
                                             <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
                                         </div>
                                         <div class="mb-3"> 
-                                            <label for="jenis_kelamin" class="form-label">Jenis Kelamin Siswa</label> 
+                                            <label for="jenis_kelamin" class="form-label">Jenis Kelamin Karyawan</label> 
                                             <select class="form-select" id="jenis_kelamin" name="jenis_kelamin">
                                                 <option value="0">--- Pilih Jenis Kelamin ---</option>
                                                 <option value="laki-laki"><?= ucwords('laki-laki'); ?></option>
@@ -189,10 +188,6 @@
                                             <label for="alamat" class="form-label">Alamat</label>
                                             <textarea class="form-control" id="alamat" name="alamat" required></textarea>
                                         </div>
-                                        <div class="mb-3"> 
-                                            <label for="kelas_siswa" class="form-label">Kelas Siswa</label> 
-                                            <input type="number" class="form-control" id="kelas_siswa" name="kelas_siswa" required>
-                                        </div>
                                         <div class="mb-3">
                                             <label for="foto" class="form-label">Foto</label>
                                             <div class="input-group">
@@ -201,14 +196,15 @@
                                             </div>
                                         </div>
                                     </div> 
+                                    
                                     <div class="card-footer pt-3 text-end">
-                                        <button type="submit" name="btnTambahSiswa" class="btn btn-primary"><i class="fas fa-fw fa-save"></i> Submit</button>
+                                        <button type="submit" name="btnTambahKaryawan" class="btn btn-danger"><i class="fas fa-fw fa-save"></i> Submit</button>
                                     </div> 
                                 </form> <!--end::Form-->
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="card card-primary card-outline mb-4">
+                            <div class="card card-danger card-outline mb-4">
                                 <div class="card-body text-center">
                                     <h5 class="form-label">Preview Foto</h5>
                                     <div class="row justify-content-between">

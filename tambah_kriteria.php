@@ -6,6 +6,7 @@
         exit;
     }
 
+    $kriteria = mysqli_query($conn, "SELECT * FROM kriteria ORDER BY peringkat_kepentingan ASC");
 ?>
 
 <!DOCTYPE html>
@@ -18,11 +19,12 @@
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <?php 
         if (isset($_POST['btnTambahKriteria'])) {
+            $kriteria_ke = htmlspecialchars($_POST['kriteria_ke']);
+            $peringkat_kepentingan = htmlspecialchars($_POST['peringkat_kepentingan']);
             $nama_kriteria = htmlspecialchars($_POST['nama_kriteria']);
             $bobot = htmlspecialchars($_POST['bobot']);
-            $atribut = htmlspecialchars($_POST['atribut']);
 
-            $insert_kriteria = mysqli_query($conn, "INSERT INTO kriteria VALUES ('', '$nama_kriteria', '$bobot', '$atribut', CURRENT_TIMESTAMP())");
+            $insert_kriteria = mysqli_query($conn, "INSERT INTO kriteria VALUES ('', '$kriteria_ke', '$peringkat_kepentingan', '$nama_kriteria', '$bobot', '', CURRENT_TIMESTAMP())");
 
             if ($insert_kriteria) {
                 $log_berhasil = mysqli_query($conn, "INSERT INTO log VALUES ('', 'Kriteria $nama_kriteria berhasil ditambahkan!', CURRENT_TIMESTAMP(), " . $dataUser['id_user'] . ")");
@@ -86,31 +88,60 @@
                 <div class="container-fluid"> <!-- Info boxes -->
                     <div class="row">
                         <div class="col-6">
-                            <div class="card card-primary card-outline mb-4">
+                            <div class="card card-danger card-outline mb-4">
                                 <form method="post" enctype="multipart/form-data"> 
                                     <div class="card-body">
+                                        <div class="mb-3"> 
+                                            <label for="kriteria_ke" class="form-label">Kriteria Ke (Tidak boleh sama dengan kriteria sebelumnya)</label>
+                                            <input type="number" class="form-control" id="kriteria_ke" name="kriteria_ke" required>
+                                        </div>
+                                        <div class="mb-3"> 
+                                            <label for="peringkat_kepentingan" class="form-label">Peringkat Kepentingan (Tidak boleh sama dengan kriteria sebelumnya)</label>
+                                            <input type="number" class="form-control" id="peringkat_kepentingan" name="peringkat_kepentingan" required>
+                                        </div>
                                         <div class="mb-3"> 
                                             <label for="nama_kriteria" class="form-label">Nama Kriteria</label>
                                             <input type="text" class="form-control" id="nama_kriteria" name="nama_kriteria" required>
                                         </div>
                                         <div class="mb-3"> 
                                             <label for="bobot" class="form-label">Bobot</label>
-                                            <input type="number" min="0" step="0.1" class="form-control" id="bobot" name="bobot" required>
-                                        </div>
-                                        <div class="mb-3"> 
-                                            <label for="atribut" class="form-label">Atribut</label>
-                                            <select name="atribut" id="atribut" class="form-select" required>
-                                                <option value="0">--- Pilih Atribut ---</option>
-                                                <option value="Benefit">Benefit</option>
-                                                <option value="Cost">Cost</option>
-                                            </select>
+                                            <input type="number" min="0" step="0.001" class="form-control" id="bobot" name="bobot" required>
                                         </div>
                                     </div> 
                                     <div class="card-footer pt-3 text-end">
-                                        <button type="submit" name="btnTambahKriteria" class="btn btn-primary"><i class="fas fa-fw fa-save"></i> Submit</button>
+                                        <button type="submit" name="btnTambahKriteria" class="btn btn-danger"><i class="fas fa-fw fa-save"></i> Submit</button>
                                     </div> 
                                 </form> <!--end::Form-->
                             </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="table-responsive p-2">
+                                        <table class="table table-bordered" id="table_id">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th class="text-center align-middle">Peringkat Kepentingan</th>
+                                                    <th class="text-center align-middle">Kriteria</th>
+                                                    <th class="text-center align-middle">Nama Kriteria</th>
+                                                    <th class="text-center align-middle">Bobot</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $i = 1; ?>
+                                                <?php foreach ($kriteria as $dk): ?>
+                                                    <tr>
+                                                        <td class="align-middle text-center"><?= $dk['peringkat_kepentingan']; ?></td>
+                                                        <td class="text-center align-middle">K<?= $dk['kriteria_ke']; ?></td>
+                                                        <td class="align-middle text-start"><?= $dk['nama_kriteria']; ?></td>
+                                                        <td class="align-middle text-start"><?= $dk['bobot']; ?></td>
+                                                    </tr>
+                                                <?php endforeach ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div> 
                         </div>
                     </div>
                 </div> <!--end::Container-->

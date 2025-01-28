@@ -6,13 +6,12 @@
         exit;
     }
 
-    $siswa = mysqli_query($conn, "SELECT * FROM siswa ORDER BY nama_siswa ASC");
-    $ekskul = mysqli_query($conn, "SELECT * FROM ekskul ORDER BY nama_ekskul ASC");
-    $kriteria = mysqli_query($conn, "SELECT * FROM kriteria ORDER BY nama_kriteria ASC");
+    $karyawan = mysqli_query($conn, "SELECT * FROM karyawan ORDER BY nama_karyawan ASC");
+    $kriteria = mysqli_query($conn, "SELECT * FROM kriteria");
 
-    if (isset($_GET['id_siswa'])) {
-        $id_siswa = $_GET['id_siswa'];
-        $data_siswa = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM siswa WHERE id_siswa = '$id_siswa'"));
+    if (isset($_GET['id_karyawan'])) {
+        $id_karyawan = $_GET['id_karyawan'];
+        $data_karyawan = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM karyawan WHERE id_karyawan = '$id_karyawan'"));
     }
 ?>
 
@@ -20,21 +19,21 @@
 <html lang="en"> <!--begin::Head-->
 
 <head>
-    <title>Tambah SPK Ekstrakurikuler</title>
+    <title>Tambah SPK Evaluasi Kinerja Karyawan</title>
     <?php include_once 'include/head.php'; ?>
 </head> <!--end::Head--> <!--begin::Body-->
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <?php 
-        if (isset($_POST['btnSpkEkstrakurikuler'])) {
-            $id_siswa = htmlspecialchars($_POST['id_siswa']);
+        if (isset($_POST['btnSpkEvaluasiKinerjaKaryawan'])) {
+            $id_karyawan = htmlspecialchars($_POST['id_karyawan']);
 
-            if ($id_siswa == '0') {
+            if ($id_karyawan == '0') {
                 echo "
                     <script>
                         Swal.fire({
                             icon: 'error',
                             title: 'Gagal!',
-                            text: 'Pilih siswa!',
+                            text: 'Pilih karyawan!',
                             confirmButtonText: 'Kembali'
                         }).then((result) => {
                             if (result.isConfirmed) {
@@ -46,42 +45,39 @@
                 exit;
             }
 
-            $hasil = mysqli_query($conn, "INSERT INTO hasil_topsis VALUES ('', '$id_siswa', '', '', CURRENT_TIMESTAMP())");
+            $hasil = mysqli_query($conn, "INSERT INTO hasil_fucom VALUES ('', '$id_karyawan', '', CURRENT_TIMESTAMP())");
             $id_hasil = mysqli_insert_id($conn);
             
             $penilaian_data = $_POST['penilaian'];
             $error = false;
-            foreach ($penilaian_data as $id => $data) {
-                $id_ekskul = $data['id_ekskul'];
-                foreach ($data as $key => $nilai_data) {
-                    // Abaikan 'id_ekskul' karena bukan array nilai
-                    if (!is_array($nilai_data)) {
-                        continue;
-                    }
+            foreach ($penilaian_data as $key => $nilai_data) {
+                // Abaikan 'id_ekskul' karena bukan array nilai
+                if (!is_array($nilai_data)) {
+                    continue;
+                }
 
-                    $id_kriteria = $nilai_data['id_kriteria'];
-                    $nilai = $nilai_data['nilai'];
+                $kriteria_ke = $nilai_data['kriteria_ke'];
+                $nilai = $nilai_data['nilai'];
 
-                    // Query insert
-                    $query = "INSERT INTO penilaian VALUES ('', '$id_kriteria', '$id_ekskul', '$nilai', '$id_hasil')";
+                // Query insert
+                $query = "INSERT INTO penilaian VALUES ('', '$kriteria_ke', '$nilai', '$id_hasil')";
 
-                    if (!mysqli_query($conn, $query)) {
-                        $error = true;
-                        break;
-                    }
+                if (!mysqli_query($conn, $query)) {
+                    $error = true;
+                    break;
                 }
             }
 
-            $nama_siswa = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM siswa WHERE id_siswa = '$id_siswa'"))['nama_siswa'];
+            $nama_karyawan = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM karyawan WHERE id_karyawan = '$id_karyawan'"))['nama_karyawan'];
 
             if (!$error) {
-                $log_berhasil = mysqli_query($conn, "INSERT INTO log VALUES ('', 'SPK Ekstrakurikuler $nama_siswa Berhasil ditambahkan!', CURRENT_TIMESTAMP(), " . $dataUser['id_user'] . ")");
+                $log_berhasil = mysqli_query($conn, "INSERT INTO log VALUES ('', 'SPK Evaluasi Kinerja Karyawan $nama_karyawan Berhasil ditambahkan!', CURRENT_TIMESTAMP(), " . $dataUser['id_user'] . ")");
                 echo "
                     <script>
                         Swal.fire({
                             icon: 'success',
                             title: 'Berhasil!',
-                            text: 'SPK Ekstrakurikuler " . $nama_siswa . " berhasil ditambahkan!'
+                            text: 'SPK Evaluasi Kinerja Karyawan " . $nama_karyawan . " berhasil ditambahkan!'
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 window.location.href = 'hasil_spk.php?id_hasil=$id_hasil';
@@ -91,13 +87,13 @@
                 ";
                 exit;
             } else {
-                $log_gagal = mysqli_query($conn, "INSERT INTO log VALUES ('', 'Ekstrakurikuler $nama_siswa gagal dihitung!', CURRENT_TIMESTAMP(), " . $dataUser['id_user'] . ")");
+                $log_gagal = mysqli_query($conn, "INSERT INTO log VALUES ('', 'Evaluasi Kinerja Karyawan $nama_karyawan gagal dihitung!', CURRENT_TIMESTAMP(), " . $dataUser['id_user'] . ")");
                 echo "
                     <script>
                         Swal.fire({
                             icon: 'error',
                             title: 'Gagal!',
-                            text: 'Ekstrakurikuler " . $nama_siswa . " gagal ditambahkan!'
+                            text: 'Evaluasi Kinerja Karyawan " . $nama_karyawan . " gagal ditambahkan!'
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 window.history.back();
@@ -118,13 +114,13 @@
                 <div class="container-fluid"> <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="mb-0">SPK Ekstrakurikuler</h3>
+                            <h3 class="mb-0">SPK Evaluasi Kinerja Karyawan</h3>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-end">
-                                <li class="breadcrumb-item"><a href="siswa.php">Siswa</a></li>
+                                <li class="breadcrumb-item"><a href="karyawan.php">Karyawan</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    SPK Ekstrakurikuler
+                                    SPK Evaluasi Kinerja Karyawan
                                 </li>
                             </ol>
                         </div>
@@ -135,37 +131,35 @@
                 <div class="container-fluid"> <!-- Info boxes -->
                     <div class="row">
                         <div class="col-12">
-                            <div class="card card-primary card-outline mb-4">
+                            <div class="card card-danger card-outline mb-4">
                                 <form method="post">
                                     <div class="card-body">
                                         <div class="mb-3">
-                                            <label for="id_siswa" class="form-label">Nama Siswa</label>
-                                            <select name="id_siswa" id="id_siswa" class="form-select select2">
-                                                <option value="0">--- Pilih Siswa ---</option>
-                                                <?php foreach ($siswa as $ds): ?>
-                                                    <option value="<?= $ds['id_siswa']; ?>"><?= htmlspecialchars($ds['nama_siswa']); ?></option>
+                                            <label for="id_karyawan" class="form-label">Nama Karyawan</label>
+                                            <select name="id_karyawan" id="id_karyawan" class="form-select select2">
+                                                <option value="0">--- Pilih Karyawan ---</option>
+                                                <?php foreach ($karyawan as $ds): ?>
+                                                    <option value="<?= $ds['id_karyawan']; ?>"><?= htmlspecialchars($ds['nama_karyawan']); ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
                                         <hr>
-                                        <?php foreach ($ekskul as $de): ?>
-                                            <input type="hidden" name="penilaian[<?= $de['id_ekskul']; ?>][id_ekskul]" value="<?= $de['id_ekskul']; ?>">
-                                            <div class="row">
-                                                <?php foreach ($kriteria as $dk): ?>
-                                                    <input type="hidden" name="penilaian[<?= $de['id_ekskul']; ?>][<?= $dk['id_kriteria']; ?>][id_kriteria]" value="<?= $dk['id_kriteria']; ?>">
-                                                    <div class="mb-3 col">
-                                                        <label for="nilai_<?= $de['id_ekskul']; ?>_<?= $dk['id_kriteria']; ?>" class="form-label">
-                                                            <?= htmlspecialchars($dk['nama_kriteria']); ?> Ekskul <?= htmlspecialchars($de['nama_ekskul']); ?> (0-10)
-                                                        </label>
-                                                        <input type="number" step="0.01" id="nilai_<?= $de['id_ekskul']; ?>_<?= $dk['id_kriteria']; ?>" class="form-control" name="penilaian[<?= $de['id_ekskul']; ?>][<?= $dk['id_kriteria']; ?>][nilai]" min="0" max="10" value="0" required>
-                                                    </div>
-                                                <?php endforeach; ?>
-                                            </div>
-                                            <hr>
-                                        <?php endforeach; ?>
+                                        <div class="row">
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($kriteria as $dk): ?>
+                                                <input type="hidden" name="penilaian[<?= $dk['kriteria_ke']; ?>][kriteria_ke]" value="<?= $dk['kriteria_ke']; ?>">
+                                                <div class="mb-3 col">
+                                                    <label for="nilai_<?= $dk['kriteria_ke']; ?>" class="form-label">
+                                                        K<?= $i++; ?> - <?= htmlspecialchars($dk['nama_kriteria']); ?> (0-100)
+                                                    </label>
+                                                    <input type="number" step="0.01" id="nilai_<?= $dk['kriteria_ke']; ?>" class="form-control" name="penilaian[<?= $dk['kriteria_ke']; ?>][nilai]" min="0" max="100" value="0" required>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                        <hr>
                                     </div>
                                     <div class="card-footer pt-3 text-end">
-                                        <button type="submit" name="btnSpkEkstrakurikuler" class="btn btn-primary">
+                                        <button type="submit" name="btnSpkEvaluasiKinerjaKaryawan" class="btn btn-primary">
                                             <i class="fas fa-fw fa-save"></i> Submit
                                         </button>
                                     </div>

@@ -15,7 +15,7 @@
 <html lang="en"> <!--begin::Head-->
 
 <head>
-    <title>Sistem Pendukung Keputusan Ekstrakurikuler Fadilah</title>
+    <title>Sistem Pendukung Keputusan Evaluasi Kinerja Karyawan</title>
     <?php include_once 'include/head.php'; ?>
 </head> <!--end::Head--> <!--begin::Body-->
 
@@ -72,12 +72,12 @@
     ?>
 
     <div class="login-box">
-        <div class="card card-outline card-primary">
+        <div class="card card-outline card-danger">
             <div class="card-header">
-                <div class="text-center">
+                <div class="text-center my-4">
                     <img src="assets/img/properties/logo.png" class="mx-auto w-50" alt="Logo">
                 </div>
-                <h4 class="text-center">Sistem Pendukung Keputusan Ekstrakurikuler Fadilah</h4>
+                <h4 class="text-center">Sistem Pendukung Keputusan Evaluasi Kinerja Karyawan</h4>
             </div>
             <div class="card-body login-card-body pb-0 pt-2">
                 <h4 class="text-dark text-center">User Login</h4>
@@ -95,13 +95,13 @@
                     </div> <!--begin::Row-->
                     <div class="row mt-3">
                         <div class="col text-end">
-                            <button type="submit" name="btnLogin" class="btn btn-primary">Login <span class="fas fa-fw fa-sign-in-alt"></span></button>
+                            <button type="submit" name="btnLogin" class="btn btn-danger">Login <span class="fas fa-fw fa-sign-in-alt"></span></button>
                         </div> <!-- /.col -->
                     </div> <!--end::Row-->
                 </form>
             </div> 
             <div class="card-footer">
-                <p class="m-0 p-0">Copyright &copy; 2025 SPK EKSKUL FADILAH.</p>
+                <p class="m-0 p-0">Copyright &copy; 2025 Aldo Hermawan Suryana.</p>
             </div>
         </div>
     </div> <!-- /.login-box --> <!--begin::Third Party Plugin(OverlayScrollbars)-->
