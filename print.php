@@ -6,13 +6,13 @@ if (!isset($_SESSION['id_user'])) {
     exit;
 }
 
-$hasil = mysqli_query($conn, "SELECT *, hasil_topsis.dibuat_pada as dibuat FROM hasil_topsis INNER JOIN karyawan ON hasil_topsis.id_karyawan = karyawan.id_karyawan INNER JOIN ekskul ON hasil_topsis.id_ekskul = ekskul.id_ekskul ORDER BY dibuat desc");
+$hasil = mysqli_query($conn, "SELECT *, hasil_fucom.dibuat_pada as dibuat FROM hasil_fucom INNER JOIN karyawan ON hasil_fucom.id_karyawan = karyawan.id_karyawan ORDER BY dibuat desc");
 
 if (isset($_GET)) {
     if (isset($_GET['dari_tanggal'])) {
         $dari_tanggal = $_GET['dari_tanggal'];
         $sampai_tanggal = $_GET['sampai_tanggal'];
-        $hasil = mysqli_query($conn, "SELECT *, hasil_topsis.dibuat_pada as dibuat FROM hasil_topsis INNER JOIN karyawan ON hasil_topsis.id_karyawan = karyawan.id_karyawan INNER JOIN ekskul ON hasil_topsis.id_ekskul = ekskul.id_ekskul WHERE hasil_topsis.dibuat_pada BETWEEN '$dari_tanggal' AND '$sampai_tanggal' ORDER BY hasil_topsis.dibuat_pada desc");
+        $hasil = mysqli_query($conn, "SELECT *, hasil_fucom.dibuat_pada as dibuat FROM hasil_fucom INNER JOIN karyawan ON hasil_fucom.id_karyawan = karyawan.id_karyawan WHERE hasil_fucom.dibuat_pada BETWEEN '$dari_tanggal' AND '$sampai_tanggal' ORDER BY hasil_fucom.dibuat_pada desc");
     }
 }
 
@@ -66,13 +66,12 @@ if (isset($_GET)) {
             <p class="text-right">Dari Tanggal: <?= date('d-m-Y', strtotime($dari_tanggal)); ?> Sampai Tanggal: <?= date('d-m-Y', strtotime($sampai_tanggal)); ?></p>
         <?php endif ?>
         <table class="table">
-            <thead>
+            <thead class="table-dark">
                 <tr>
-                    <th>No.</th>
-                    <th>Nama Karyawan</th>
-                    <th>Evaluasi Kinerja Karyawan</th>
-                    <th>Preferensi Tertinggi</th>
-                    <th>Dibuat Pada</th>
+                    <th class="text-center align-middle">No.</th>
+                    <th class="text-center align-middle">Nama Karyawan</th>
+                    <th class="text-center align-middle">Nilai Evaluasi Kinerja Karyawan</th>
+                    <th class="text-center align-middle">Dibuat Pada</th>
                 </tr>
             </thead>
             <tbody>
@@ -81,9 +80,8 @@ if (isset($_GET)) {
                     <tr>
                         <td class="text-center align-middle"><?= $i++; ?>.</td>
                         <td class="align-middle text-start"><?= $dh['nama_karyawan']; ?></td>
-                        <td class="align-middle text-start"><?= $dh['nama_ekskul']; ?></td>
-                        <td class="align-middle text-start"><?= $dh['preferensi_tertinggi']; ?></td>
-                        <td class="align-middle text-start"><?= date('d-m-Y, H:i \W\I\B', strtotime($dh['dibuat'])); ?></td>
+                        <td class="align-middle text-start"><?= $dh['nilai_akhir']; ?></td>
+                        <td class="align-middle text-start"><?= date('d-m-Y, H:i', strtotime($dh['dibuat'])); ?></td>
                     </tr>
                 <?php endforeach ?>
             </tbody>
