@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Jan 2025 pada 19.20
+-- Waktu pembuatan: 31 Jan 2025 pada 11.13
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 7.4.33
 
@@ -39,7 +39,7 @@ CREATE TABLE `hasil_fucom` (
 --
 
 INSERT INTO `hasil_fucom` (`id_hasil`, `id_karyawan`, `nilai_akhir`, `dibuat_pada`) VALUES
-(1, 1, 57.641, '2025-01-29 01:20:09');
+(2, 1, 66.4705, '2025-01-31 16:51:03');
 
 -- --------------------------------------------------------
 
@@ -173,7 +173,13 @@ INSERT INTO `log` (`id_log`, `isi_log`, `tgl_log`, `id_user`) VALUES
 (61, 'Evaluasi Kinerja Karyawan Andri Firman Saputra gagal dihitung!', '2025-01-28 18:19:22', 1),
 (62, 'Evaluasi Kinerja Karyawan Andri Firman Saputra gagal dihitung!', '2025-01-28 18:19:29', 1),
 (63, 'Evaluasi Kinerja Karyawan Andri Firman Saputra gagal dihitung!', '2025-01-28 18:19:34', 1),
-(64, 'SPK Evaluasi Kinerja Karyawan Andri Firman Saputra Berhasil ditambahkan!', '2025-01-28 18:20:09', 1);
+(64, 'SPK Evaluasi Kinerja Karyawan Andri Firman Saputra Berhasil ditambahkan!', '2025-01-28 18:20:09', 1),
+(65, 'User admin berhasil login!', '2025-01-31 08:07:53', 1),
+(66, 'SPK Evaluasi Kinerja Karyawan Andri Firman Saputra Berhasil ditambahkan!', '2025-01-31 09:32:34', 1),
+(67, 'Hasil Evaluasi Kinerja Karyawan Andri Firman Saputra berhasil dihapus!', '2025-01-31 09:33:11', 1),
+(68, 'SPK Evaluasi Kinerja Karyawan Andri Firman Saputra Berhasil ditambahkan!', '2025-01-31 09:51:03', 1),
+(69, 'User admin berhasil logout!', '2025-01-31 09:51:07', 1),
+(70, 'User admin berhasil login!', '2025-01-31 09:51:11', 1);
 
 -- --------------------------------------------------------
 
@@ -193,11 +199,11 @@ CREATE TABLE `penilaian` (
 --
 
 INSERT INTO `penilaian` (`id_penilaian`, `id_kriteria`, `nilai`, `id_hasil`) VALUES
-(1, 5, 80, 1),
-(2, 1, 50, 1),
-(3, 2, 54, 1),
-(4, 3, 66, 1),
-(5, 4, 50, 1);
+(11, 5, 50, 2),
+(12, 1, 80, 2),
+(13, 2, 65, 2),
+(14, 3, 45, 2),
+(15, 4, 80, 2);
 
 -- --------------------------------------------------------
 
@@ -275,7 +281,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `hasil_fucom`
 --
 ALTER TABLE `hasil_fucom`
-  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `karyawan`
@@ -293,13 +299,13 @@ ALTER TABLE `kriteria`
 -- AUTO_INCREMENT untuk tabel `log`
 --
 ALTER TABLE `log`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT untuk tabel `penilaian`
 --
 ALTER TABLE `penilaian`
-  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
