@@ -26,6 +26,7 @@
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <?php 
         if (isset($_POST['btnUbahKaryawan'])) {
+            $nik = htmlspecialchars($_POST['nik']);
             $nama_karyawan = htmlspecialchars($_POST['nama_karyawan']);
             $tanggal_lahir = htmlspecialchars($_POST['tanggal_lahir']);
             $jenis_kelamin = htmlspecialchars($_POST['jenis_kelamin']);
@@ -89,7 +90,7 @@
                 $foto = uniqid() . '_' . time() . '_' . $foto_new;
             }
             
-            $update_karyawan = mysqli_query($conn, "UPDATE karyawan SET nama_karyawan = '$nama_karyawan', tanggal_lahir = '$tanggal_lahir', jenis_kelamin = '$jenis_kelamin', no_hp = '$no_hp', alamat = '$alamat', foto = '$foto' WHERE id_karyawan = '$id_karyawan'");
+            $update_karyawan = mysqli_query($conn, "UPDATE karyawan SET nik = '$nik', nama_karyawan = '$nama_karyawan', tanggal_lahir = '$tanggal_lahir', jenis_kelamin = '$jenis_kelamin', no_hp = '$no_hp', alamat = '$alamat', foto = '$foto' WHERE id_karyawan = '$id_karyawan'");
 
             if ($update_karyawan) {
                 $log_berhasil = mysqli_query($conn, "INSERT INTO log VALUES ('', 'Karyawan $nama_karyawan berhasil diubah!', CURRENT_TIMESTAMP(), " . $dataUser['id_user'] . ")");
@@ -162,6 +163,10 @@
                             <div class="card card-danger card-outline mb-4">
                                 <form method="post" enctype="multipart/form-data"> 
                                     <div class="card-body">
+                                        <div class="mb-3"> 
+                                            <label for="nik" class="form-label">NIK</label>
+                                            <input type="number" class="form-control" id="nik" name="nik" value="<?= $data_karyawan['nik']; ?>" required>
+                                        </div>
                                         <div class="mb-3"> 
                                             <label for="nama_karyawan" class="form-label">Nama Karyawan</label>
                                             <input type="text" class="form-control" id="nama_karyawan" name="nama_karyawan" value="<?= $data_karyawan['nama_karyawan']; ?>" required>

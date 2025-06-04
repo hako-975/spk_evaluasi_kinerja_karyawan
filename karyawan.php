@@ -49,6 +49,7 @@
                                     <thead class="table-dark">
                                         <tr>
                                             <th class="text-center align-middle">No.</th>
+                                            <th class="text-center align-middle">NIK</th>
                                             <th class="text-center align-middle">Nama Karyawan</th>
                                             <th class="text-center align-middle">Jenis Kelamin</th>
                                             <th class="text-center align-middle">No. Telepon</th>
@@ -60,6 +61,7 @@
                                         <?php foreach ($karyawan as $dk): ?>
                                             <tr>
                                                 <td class="text-center align-middle"><?= $i++; ?>.</td>
+                                                <td class="align-middle text-start"><?= $dk['nik']; ?></td>
                                                 <td class="align-middle text-start"><?= $dk['nama_karyawan']; ?></td>
                                                 <td class="align-middle text-start"><?= $dk['jenis_kelamin']; ?></td>
                                                 <td class="align-middle text-start"><?= $dk['no_hp']; ?></td>

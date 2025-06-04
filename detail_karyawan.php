@@ -80,6 +80,7 @@
                                     <img src="assets/img/profiles/<?= $data_karyawan['foto']; ?>" alt="<?= $data_karyawan['foto']; ?>">
                                 </div>
                                 <h3 class="text-center"><?= $data_karyawan['nama_karyawan']; ?></h3>
+                                <p><strong>NIK: </strong><?= $data_karyawan['nik']; ?></p>
                                 <p><strong>Tanggal Lahir: </strong><?= date('d-m-Y', strtotime($data_karyawan['tanggal_lahir']));; ?></p>
                                 <p><strong>Jenis Kelamin: </strong><?= ucwords($data_karyawan['jenis_kelamin']); ?></p>
                                 <p><strong>No. Telepon: </strong><?= $data_karyawan['no_hp']; ?></p>

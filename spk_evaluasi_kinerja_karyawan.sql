@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 31 Jan 2025 pada 11.13
+-- Waktu pembuatan: 04 Jun 2025 pada 12.46
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 7.4.33
 
@@ -39,7 +39,8 @@ CREATE TABLE `hasil_fucom` (
 --
 
 INSERT INTO `hasil_fucom` (`id_hasil`, `id_karyawan`, `nilai_akhir`, `dibuat_pada`) VALUES
-(2, 1, 66.4705, '2025-01-31 16:51:03');
+(5, 3, 86.1355, '2025-06-03 10:29:43'),
+(6, 4, 90.009, '2025-06-03 13:25:32');
 
 -- --------------------------------------------------------
 
@@ -49,6 +50,7 @@ INSERT INTO `hasil_fucom` (`id_hasil`, `id_karyawan`, `nilai_akhir`, `dibuat_pad
 
 CREATE TABLE `karyawan` (
   `id_karyawan` int(11) NOT NULL,
+  `nik` varchar(20) NOT NULL,
   `nama_karyawan` varchar(100) NOT NULL,
   `tanggal_lahir` date NOT NULL,
   `jenis_kelamin` enum('laki-laki','perempuan') NOT NULL,
@@ -62,8 +64,9 @@ CREATE TABLE `karyawan` (
 -- Dumping data untuk tabel `karyawan`
 --
 
-INSERT INTO `karyawan` (`id_karyawan`, `nama_karyawan`, `tanggal_lahir`, `jenis_kelamin`, `no_hp`, `alamat`, `foto`, `dibuat_pada`) VALUES
-(1, 'Andri Firman Saputra', '2002-01-29', 'laki-laki', '087808675313', 'pocis', '678f5448e9d26_1737446472_65483768.jpeg', '2025-01-21 15:01:12');
+INSERT INTO `karyawan` (`id_karyawan`, `nik`, `nama_karyawan`, `tanggal_lahir`, `jenis_kelamin`, `no_hp`, `alamat`, `foto`, `dibuat_pada`) VALUES
+(3, '3674072901020001', 'Aldo Hermawan Suryana', '2001-04-08', 'laki-laki', '088298809929', 'Tangerang Selatan', '683e934a94431_1748931402_universitas-pamulang-logo-E63E1DF629-seeklogo.com.png', '2025-06-03 10:21:54'),
+(4, '3674072901020002', 'Tatang Suryana', '1954-08-13', 'laki-laki', '088212356087', 'Tangerang Selatan', 'default.jpg', '2025-06-03 13:25:08');
 
 -- --------------------------------------------------------
 
@@ -86,11 +89,11 @@ CREATE TABLE `kriteria` (
 --
 
 INSERT INTO `kriteria` (`id_kriteria`, `kriteria_ke`, `peringkat_kepentingan`, `nama_kriteria`, `bobot`, `bobot_normalisasi`, `dibuat_pada`) VALUES
-(1, 2, 1, 'Produktivitas', 1, 0.3291, '2025-01-28 13:47:03'),
-(2, 3, 2, 'Kerja Sama Tim', 1.5, 0.2194, '2025-01-28 13:45:56'),
-(3, 4, 3, 'Kedisiplinan', 1.2, 0.1829, '2025-01-28 13:45:14'),
-(4, 5, 4, 'Kreativitas', 1.3, 0.1407, '2025-01-28 13:44:48'),
-(5, 1, 5, 'Kehadiran', 1.1, 0.1279, '2025-01-29 00:37:28');
+(7, 1, 1, 'kehadiran', 0.15, 0.0015, '2025-06-03 10:24:39'),
+(8, 2, 2, 'kedisplinan', 0.2, 0.0076, '2025-06-03 10:26:35'),
+(9, 3, 3, 'Produktivitas', 0.3, 0.0252, '2025-06-03 10:27:16'),
+(10, 4, 4, 'kerja sama ', 0.2, 0.126, '2025-06-03 10:28:18'),
+(11, 5, 5, 'Kreativitas', 0.15, 0.8398, '2025-06-03 10:28:41');
 
 -- --------------------------------------------------------
 
@@ -179,7 +182,111 @@ INSERT INTO `log` (`id_log`, `isi_log`, `tgl_log`, `id_user`) VALUES
 (67, 'Hasil Evaluasi Kinerja Karyawan Andri Firman Saputra berhasil dihapus!', '2025-01-31 09:33:11', 1),
 (68, 'SPK Evaluasi Kinerja Karyawan Andri Firman Saputra Berhasil ditambahkan!', '2025-01-31 09:51:03', 1),
 (69, 'User admin berhasil logout!', '2025-01-31 09:51:07', 1),
-(70, 'User admin berhasil login!', '2025-01-31 09:51:11', 1);
+(70, 'User admin berhasil login!', '2025-01-31 09:51:11', 1),
+(71, 'User admin berhasil login!', '2025-03-02 08:41:24', 1),
+(72, 'User admin berhasil logout!', '2025-03-02 08:42:05', 1),
+(73, 'User admin  berhasil login!', '2025-03-09 21:14:38', 1),
+(74, 'User Admin berhasil login!', '2025-05-07 13:10:31', 1),
+(75, 'User admin berhasil login!', '2025-05-14 08:01:00', 1),
+(76, 'User admin berhasil login!', '2025-05-30 12:18:55', 1),
+(77, 'SPK Evaluasi Kinerja Karyawan Andri Firman Saputra Berhasil ditambahkan!', '2025-05-30 12:19:55', 1),
+(78, 'User admin berhasil login!', '2025-06-02 09:46:01', 1),
+(79, 'Hasil Evaluasi Kinerja Karyawan Andri Firman Saputra berhasil dihapus!', '2025-06-02 09:48:18', 1),
+(80, 'Evaluasi Kinerja Karyawan Kehadiran berhasil dihapus!', '2025-06-02 09:48:35', 1),
+(81, 'Evaluasi Kinerja Karyawan Kreativitas berhasil dihapus!', '2025-06-02 09:48:39', 1),
+(82, 'Evaluasi Kinerja Karyawan Kedisiplinan berhasil dihapus!', '2025-06-02 09:48:43', 1),
+(83, 'Evaluasi Kinerja Karyawan Kerja Sama Tim berhasil dihapus!', '2025-06-02 09:48:46', 1),
+(84, 'Evaluasi Kinerja Karyawan Produktivitas berhasil dihapus!', '2025-06-02 09:48:50', 1),
+(85, 'Karyawan Andri Firman Saputra berhasil dihapus!', '2025-06-02 09:49:05', 1),
+(86, 'User admin berhasil login!', '2025-06-02 09:50:21', 1),
+(87, 'User admin berhasil logout!', '2025-06-02 09:59:59', 1),
+(88, 'User admin berhasil login!', '2025-06-03 01:05:23', 1),
+(89, 'User admin berhasil login!', '2025-06-03 01:06:20', 1),
+(90, 'User admin berhasil login!', '2025-06-03 02:19:57', 1),
+(91, 'User admin berhasil login!', '2025-06-03 03:19:43', 1),
+(92, 'Kriteria feasd berhasil ditambahkan!', '2025-06-03 03:21:09', 1),
+(93, 'Karyawan ewrwr berhasil ditambahkan!', '2025-06-03 03:21:54', 1),
+(94, 'SPK Evaluasi Kinerja Karyawan ewrwr Berhasil ditambahkan!', '2025-06-03 03:22:22', 1),
+(95, 'Kriteria feasd berhasil diubah!', '2025-06-03 03:23:06', 1),
+(96, 'Karyawan ewrwr berhasil diubah!', '2025-06-03 03:23:19', 1),
+(97, 'Evaluasi Kinerja Karyawan feasd berhasil dihapus!', '2025-06-03 03:24:05', 1),
+(98, 'Kriteria kedisplinan berhasil ditambahkan!', '2025-06-03 03:24:39', 1),
+(99, 'Kriteria kedisplinan berhasil diubah!', '2025-06-03 03:25:11', 1),
+(100, 'Kriteria kehadiran berhasil ditambahkan!', '2025-06-03 03:26:35', 1),
+(101, 'Kriteria kedisplinan berhasil diubah!', '2025-06-03 03:26:49', 1),
+(102, 'Kriteria Produktivitas berhasil ditambahkan!', '2025-06-03 03:27:16', 1),
+(103, 'Kriteria kerja sama  berhasil ditambahkan!', '2025-06-03 03:28:18', 1),
+(104, 'Kriteria Kreativitas berhasil ditambahkan!', '2025-06-03 03:28:41', 1),
+(105, 'Hasil Evaluasi Kinerja Karyawan ewrwr berhasil dihapus!', '2025-06-03 03:28:54', 1),
+(106, 'SPK Evaluasi Kinerja Karyawan ewrwr Berhasil ditambahkan!', '2025-06-03 03:29:43', 1),
+(107, 'Kriteria kerja sama  berhasil diubah!', '2025-06-03 03:31:16', 1),
+(108, 'Kriteria kerja sama  berhasil diubah!', '2025-06-03 03:34:41', 1),
+(109, 'Kriteria kerja sama  berhasil diubah!', '2025-06-03 03:35:32', 1),
+(110, 'Kriteria Produktivitas berhasil diubah!', '2025-06-03 03:35:51', 1),
+(111, 'Kriteria Kreativitas berhasil diubah!', '2025-06-03 03:36:13', 1),
+(112, 'Kriteria kehadiran berhasil diubah!', '2025-06-03 03:36:41', 1),
+(113, 'Kriteria kedisplinan berhasil diubah!', '2025-06-03 03:36:54', 1),
+(114, 'Kriteria kerja sama  berhasil diubah!', '2025-06-03 03:37:04', 1),
+(115, 'User admin berhasil login!', '2025-06-03 03:51:49', 1),
+(116, 'Kriteria kedisplinan berhasil diubah!', '2025-06-03 03:56:12', 1),
+(117, 'Kriteria kehadiran berhasil diubah!', '2025-06-03 03:56:39', 1),
+(118, 'Kriteria kedisplinan berhasil diubah!', '2025-06-03 03:56:53', 1),
+(119, 'Kriteria Produktivitas berhasil diubah!', '2025-06-03 03:57:06', 1),
+(120, 'Kriteria kerja sama  berhasil diubah!', '2025-06-03 03:57:19', 1),
+(121, 'Kriteria kehadiran berhasil diubah!', '2025-06-03 03:57:42', 1),
+(122, 'Kriteria Produktivitas berhasil diubah!', '2025-06-03 03:57:57', 1),
+(123, 'Kriteria Kreativitas berhasil diubah!', '2025-06-03 03:58:10', 1),
+(124, 'Kriteria Produktivitas berhasil diubah!', '2025-06-03 03:58:24', 1),
+(125, 'Kriteria kehadiran berhasil diubah!', '2025-06-03 03:58:49', 1),
+(126, 'Kriteria kehadiran berhasil diubah!', '2025-06-03 03:59:05', 1),
+(127, 'Kriteria kerja sama  berhasil diubah!', '2025-06-03 03:59:18', 1),
+(128, 'Kriteria Kreativitas berhasil diubah!', '2025-06-03 03:59:31', 1),
+(129, 'Kriteria kedisplinan berhasil diubah!', '2025-06-03 04:00:11', 1),
+(130, 'Kriteria kedisplinan berhasil diubah!', '2025-06-03 04:00:56', 1),
+(131, 'Kriteria kehadiran berhasil diubah!', '2025-06-03 04:01:09', 1),
+(132, 'Kriteria Produktivitas berhasil diubah!', '2025-06-03 04:01:19', 1),
+(133, 'Kriteria kerja sama  berhasil diubah!', '2025-06-03 04:01:31', 1),
+(134, 'Kriteria kerja sama  berhasil diubah!', '2025-06-03 04:01:44', 1),
+(135, 'Kriteria kehadiran berhasil diubah!', '2025-06-03 04:02:04', 1),
+(136, 'Kriteria kedisplinan berhasil diubah!', '2025-06-03 04:02:16', 1),
+(137, 'User admin berhasil login!', '2025-06-03 06:06:25', 1),
+(138, 'Kriteria kehadiran berhasil diubah!', '2025-06-03 06:07:24', 1),
+(139, 'Kriteria kedisplinan berhasil diubah!', '2025-06-03 06:07:38', 1),
+(140, 'Kriteria Produktivitas berhasil diubah!', '2025-06-03 06:08:35', 1),
+(141, 'Kriteria kerja sama  berhasil diubah!', '2025-06-03 06:08:54', 1),
+(142, 'Kriteria Kreativitas berhasil diubah!', '2025-06-03 06:09:03', 1),
+(143, 'User Admin berhasil login!', '2025-06-03 06:11:44', 1),
+(144, 'Kriteria kehadiran berhasil diubah!', '2025-06-03 06:12:03', 1),
+(145, 'Kriteria kedisplinan berhasil diubah!', '2025-06-03 06:12:11', 1),
+(146, 'Kriteria Produktivitas berhasil diubah!', '2025-06-03 06:12:25', 1),
+(147, 'Kriteria Kreativitas berhasil diubah!', '2025-06-03 06:12:44', 1),
+(148, 'Karyawan Aldo Hermawan Suryana berhasil diubah!', '2025-06-03 06:16:42', 1),
+(149, 'Kriteria kehadiran berhasil diubah!', '2025-06-03 06:17:10', 1),
+(150, 'Kriteria kehadiran gagal ditambahkan!', '2025-06-03 06:20:45', 1),
+(151, 'Kriteria kehadiran gagal ditambahkan!', '2025-06-03 06:21:32', 1),
+(152, 'Kriteria kehadiran berhasil ditambahkan!', '2025-06-03 06:23:19', 1),
+(153, 'Evaluasi Kinerja Karyawan kehadiran berhasil dihapus!', '2025-06-03 06:23:29', 1),
+(154, 'Karyawan Tatang Suryana berhasil ditambahkan!', '2025-06-03 06:25:08', 1),
+(155, 'SPK Evaluasi Kinerja Karyawan Tatang Suryana Berhasil ditambahkan!', '2025-06-03 06:25:32', 1),
+(156, 'Kriteria kehadiran berhasil ditambahkan!', '2025-06-03 06:26:06', 1),
+(157, 'Kriteria kedisplinan berhasil ditambahkan!', '2025-06-03 06:26:36', 1),
+(158, 'Kriteria Produktivitas berhasil ditambahkan!', '2025-06-03 06:27:03', 1),
+(159, 'Kriteria kerja sama  berhasil ditambahkan!', '2025-06-03 06:27:29', 1),
+(160, 'Kriteria Kreativitas berhasil ditambahkan!', '2025-06-03 06:28:20', 1),
+(161, 'Evaluasi Kinerja Karyawan Kreativitas berhasil dihapus!', '2025-06-03 06:29:12', 1),
+(162, 'Evaluasi Kinerja Karyawan kerja sama  berhasil dihapus!', '2025-06-03 06:29:18', 1),
+(163, 'Evaluasi Kinerja Karyawan Produktivitas berhasil dihapus!', '2025-06-03 06:29:23', 1),
+(164, 'Evaluasi Kinerja Karyawan kedisplinan berhasil dihapus!', '2025-06-03 06:29:29', 1),
+(165, 'Evaluasi Kinerja Karyawan kehadiran berhasil dihapus!', '2025-06-03 06:29:33', 1),
+(166, 'User admin berhasil login!', '2025-06-03 07:03:55', 1),
+(167, 'User admin berhasil login!', '2025-06-03 07:33:10', 1),
+(168, 'User admin berhasil login!', '2025-06-03 17:34:44', 1),
+(169, 'User admin berhasil login!', '2025-06-04 10:34:01', 1),
+(170, 'Karyawan Habib Al Huda berhasil ditambahkan!', '2025-06-04 10:37:58', 1),
+(171, 'Karyawan Habib Al Huda berhasil diubah!', '2025-06-04 10:38:04', 1),
+(172, 'Karyawan Habib Al Huda berhasil dihapus!', '2025-06-04 10:38:06', 1),
+(173, 'User admin berhasil logout!', '2025-06-04 10:41:43', 1),
+(174, 'User admin berhasil login!', '2025-06-04 10:45:13', 1);
 
 -- --------------------------------------------------------
 
@@ -199,11 +306,16 @@ CREATE TABLE `penilaian` (
 --
 
 INSERT INTO `penilaian` (`id_penilaian`, `id_kriteria`, `nilai`, `id_hasil`) VALUES
-(11, 5, 50, 2),
-(12, 1, 80, 2),
-(13, 2, 65, 2),
-(14, 3, 45, 2),
-(15, 4, 80, 2);
+(22, 7, 90, 5),
+(23, 8, 85, 5),
+(24, 9, 95, 5),
+(25, 10, 90, 5),
+(26, 11, 85, 5),
+(27, 7, 90, 6),
+(28, 8, 90, 6),
+(29, 9, 90, 6),
+(30, 10, 90, 6),
+(31, 11, 90, 6);
 
 -- --------------------------------------------------------
 
@@ -281,31 +393,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `hasil_fucom`
 --
 ALTER TABLE `hasil_fucom`
-  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `karyawan`
 --
 ALTER TABLE `karyawan`
-  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_karyawan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `log`
 --
 ALTER TABLE `log`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
 
 --
 -- AUTO_INCREMENT untuk tabel `penilaian`
 --
 ALTER TABLE `penilaian`
-  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
